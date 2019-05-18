@@ -19,6 +19,24 @@
 				</view>
 			</view>
 		</view>
+		
+		
+		<view class="uni-list">
+		    <block >
+		        <view class="uni-list-cell" hover-class="uni-list-cell-hover">
+		            <view class="uni-triplex-row">
+		                <view class="uni-triplex-left">
+							 <text class="uni-title uni-ellipsis">{{searchrs.content}}</text>
+							  <text class="uni-title uni-ellipsis" v-if="searchrs.pron">音标:{{searchrs.pron}}</text>
+		                    <text class="uni-title uni-ellipsis">{{searchrs.definition}}</text>
+		                    
+		                   
+		                </view>
+		               
+		            </view>
+		        </view>
+		    </block>
+		</view>
 	</view>
 </template>
 <script>
@@ -27,6 +45,7 @@
 			return {
 				searchKey: [],
 				ipt: '',
+				searchrs:{},
 				searchClose: true,
 
 			}
@@ -35,6 +54,7 @@
 			var vv = uni.getStorageSync('searchLocal');
 			var arr = vv.split("-");
 			this.searchKey = arr;
+			
 		},
 		methods: {
 
@@ -79,10 +99,10 @@
 				});
 			},
 			callsb:function(val){
-				console.log("**********callyoudao*******"+val);
-				const duration = 2000;
-				const requestUrl = 'https://api.shanbay.com/bdc/search/?word='+val
+				console.log("**********call扇贝*******"+val);
 				
+				const requestUrl = 'https://api.shanbay.com/bdc/search/?word='+val
+				var that = this;
 				uni.request({
 					url: requestUrl,
 					dataType: 'text',
@@ -90,30 +110,12 @@
 						noncestr: Date.now()
 					},
 					success: (res) => {
-						console.log('request success', res)
-						console.log("***************1*******")
-						console.log(res)
-						console.log("***************2*******")
+					
+						// string 转 json
 						let datajson=JSON.parse(res.data);
-						console.log(datajson)
-						console.log(datajson.data.content)
-						console.log("***************3*******")
-						console.log(datajson.data.audio_addresses.us[0])
-						console.log("***************4*******")
-						console.log(datajson.data.pron)
-						console.log("***************5*******")
-						console.log(datajson.data.definition)
-						// 	console.log("***************3*******")
-						// let translateResult=JSON.parse(res.data);
-						// console.log(translateResult)
-						// console.log("***************4*******")
-						// 
-						// console.log(translateResult.translateResult[0][0].tgt)
-						// this.res = '请求结果 : ' + JSON.stringify(res);
-						// // let  srcval=this.res.data.translateResult[0].src;
-						// // let   tgtval=this.res.data.translateResult[0].tgt;
-						// console.log(this.res);
-						// console.log(this.res.data);
+					
+						that.searchrs=datajson.data;
+						
 					},
 					fail: (err) => {
 						console.log('request fail', err);
@@ -244,5 +246,32 @@
 		margin-left: 15upx;
 		margin-bottom: 20upx;
 		border: 1px solid #ccc;
+	}
+	
+	
+	/* 三行列表 */
+	.uni-triplex-row {
+		display: flex;
+		flex: 1;
+		width: 100%;
+		box-sizing: border-box;
+		flex-direction: row;
+		padding: 22upx 30upx;
+	}
+	.uni-triplex-right,
+	.uni-triplex-left {
+		display: flex;
+		flex-direction: column;
+	}
+	.uni-triplex-left {
+		width: 84%;
+	}
+	.uni-triplex-left .uni-title{
+		padding:8upx 0;
+	}
+	.uni-triplex-left .uni-text, .uni-triplex-left .uni-text-small{color:#999999;}
+	.uni-triplex-right {
+		width: 16%;
+		text-align: right;
 	}
 </style>

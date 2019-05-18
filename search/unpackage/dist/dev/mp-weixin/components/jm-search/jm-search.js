@@ -121,12 +121,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       searchKey: [],
       ipt: '',
+      searchrs: {},
       searchClose: true };
 
 
@@ -135,6 +154,7 @@ var _default =
     var vv = uni.getStorageSync('searchLocal');
     var arr = vv.split("-");
     this.searchKey = arr;
+
   },
   methods: {
 
@@ -179,10 +199,10 @@ var _default =
 
     },
     callsb: function callsb(val) {var _this = this;
-      console.log("**********callyoudao*******" + val);
-      var duration = 2000;
-      var requestUrl = 'https://api.shanbay.com/bdc/search/?word=' + val;
+      console.log("**********call扇贝*******" + val);
 
+      var requestUrl = 'https://api.shanbay.com/bdc/search/?word=' + val;
+      var that = this;
       uni.request({
         url: requestUrl,
         dataType: 'text',
@@ -190,30 +210,12 @@ var _default =
           noncestr: Date.now() },
 
         success: function success(res) {
-          console.log('request success', res);
-          console.log("***************1*******");
-          console.log(res);
-          console.log("***************2*******");
+
+          // string 转 json
           var datajson = JSON.parse(res.data);
-          console.log(datajson);
-          console.log(datajson.data.content);
-          console.log("***************3*******");
-          console.log(datajson.data.audio_addresses.us[0]);
-          console.log("***************4*******");
-          console.log(datajson.data.pron);
-          console.log("***************5*******");
-          console.log(datajson.data.definition);
-          // 	console.log("***************3*******")
-          // let translateResult=JSON.parse(res.data);
-          // console.log(translateResult)
-          // console.log("***************4*******")
-          // 
-          // console.log(translateResult.translateResult[0][0].tgt)
-          // this.res = '请求结果 : ' + JSON.stringify(res);
-          // // let  srcval=this.res.data.translateResult[0].src;
-          // // let   tgtval=this.res.data.translateResult[0].tgt;
-          // console.log(this.res);
-          // console.log(this.res.data);
+
+          that.searchrs = datajson.data;
+
         },
         fail: function fail(err) {
           console.log('request fail', err);
