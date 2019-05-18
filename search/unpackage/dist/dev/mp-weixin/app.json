@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/translation/translation",
+    "pages/search/search",
+    "pages/list/list",
+    "pages/detail/detail",
+    "pages/ucenter/ucenter",
+    "pages/translation2/translation2"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "新闻资讯",
+    "navigationBarBackgroundColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/translation/translation",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-active.png",
+        "text": "翻译"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home-active.png",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/ucenter/ucenter",
+        "iconPath": "static/center.png",
+        "selectedIconPath": "static/center-active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
