@@ -118,23 +118,6 @@ createPage(_list.default);
 
 /***/ }),
 
-/***/ "../../../../../../Users/jiyu/Documents/HBuilderProjects/search/main.js?{\"page\":\"pages%2Fsearch%2Fsearch\"}":
-/*!**************************************************************************************************!*\
-  !*** C:/Users/jiyu/Documents/HBuilderProjects/search/main.js?{"page":"pages%2Fsearch%2Fsearch"} ***!
-  \**************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../../../Users/jiyu/Documents/HBuilderProjects/search/pages.json");
-
-var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _search = _interopRequireDefault(__webpack_require__(/*! ./pages/search/search.vue */ "../../../../../../Users/jiyu/Documents/HBuilderProjects/search/pages/search/search.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-createPage(_search.default);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
-
-/***/ }),
-
 /***/ "../../../../../../Users/jiyu/Documents/HBuilderProjects/search/main.js?{\"page\":\"pages%2Ftranslation%2Ftranslation\"}":
 /*!************************************************************************************************************!*\
   !*** C:/Users/jiyu/Documents/HBuilderProjects/search/main.js?{"page":"pages%2Ftranslation%2Ftranslation"} ***!

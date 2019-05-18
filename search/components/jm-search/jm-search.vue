@@ -71,10 +71,101 @@
 				var newArr = that.searchKey;
 				newArr.push(this.ipt);
 				this.searchKey = newArr;
+				this.callsb(this.ipt);
 				var newStr = newArr.join('-');
 				uni.setStorage({
 					key: 'searchLocal',
 					data: newStr
+				});
+			},
+			callsb:function(val){
+				console.log("**********callyoudao*******"+val);
+				const duration = 2000;
+				const requestUrl = 'https://api.shanbay.com/bdc/search/?word='+val
+				
+				uni.request({
+					url: requestUrl,
+					dataType: 'text',
+					data: {
+						noncestr: Date.now()
+					},
+					success: (res) => {
+						console.log('request success', res)
+						console.log("***************1*******")
+						console.log(res)
+						console.log("***************2*******")
+						let datajson=JSON.parse(res.data);
+						console.log(datajson)
+						console.log(datajson.data.content)
+						console.log("***************3*******")
+						console.log(datajson.data.audio_addresses.us[0])
+						console.log("***************4*******")
+						console.log(datajson.data.pron)
+						console.log("***************5*******")
+						console.log(datajson.data.definition)
+						// 	console.log("***************3*******")
+						// let translateResult=JSON.parse(res.data);
+						// console.log(translateResult)
+						// console.log("***************4*******")
+						// 
+						// console.log(translateResult.translateResult[0][0].tgt)
+						// this.res = '请求结果 : ' + JSON.stringify(res);
+						// // let  srcval=this.res.data.translateResult[0].src;
+						// // let   tgtval=this.res.data.translateResult[0].tgt;
+						// console.log(this.res);
+						// console.log(this.res.data);
+					},
+					fail: (err) => {
+						console.log('request fail', err);
+						uni.showModal({
+							content: err.errMsg,
+							showCancel: false
+						});
+					},
+					complete: () => {
+						this.loading = false;
+					}
+				});
+			},
+			callyoudao:function(val){
+				console.log("**********callyoudao*******"+val);
+				const duration = 2000;
+				const requestUrl = 'http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i='+val
+				
+				uni.request({
+					url: requestUrl,
+					dataType: 'text',
+					data: {
+						noncestr: Date.now()
+					},
+					success: (res) => {
+						console.log('request success', res)
+						console.log("***************1*******")
+						console.log(res)
+						console.log("***************2*******")
+						console.log(res.data)
+							console.log("***************3*******")
+						let translateResult=JSON.parse(res.data);
+						console.log(translateResult)
+						console.log("***************4*******")
+						
+						console.log(translateResult.translateResult[0][0].tgt)
+						this.res = '请求结果 : ' + JSON.stringify(res);
+						// let  srcval=this.res.data.translateResult[0].src;
+						// let   tgtval=this.res.data.translateResult[0].tgt;
+						console.log(this.res);
+						console.log(this.res.data);
+					},
+					fail: (err) => {
+						console.log('request fail', err);
+						uni.showModal({
+							content: err.errMsg,
+							showCancel: false
+						});
+					},
+					complete: () => {
+						this.loading = false;
+					}
 				});
 			}
 		}

@@ -1,16 +1,15 @@
 {
   "pages": [
-    "pages/translation/translation",
-    "pages/search/search",
+    "pages/translation2/translation2",
     "pages/list/list",
     "pages/detail/detail",
     "pages/ucenter/ucenter",
-    "pages/translation2/translation2"
+    "pages/translation/translation"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "新闻资讯",
+    "navigationBarTitleText": "蓝道翻译",
     "navigationBarBackgroundColor": "#2F85FC",
     "backgroundColor": "#FFFFFF"
   },
@@ -21,21 +20,21 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/translation/translation",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home-active.png",
+        "pagePath": "pages/translation2/translation2",
+        "iconPath": "static/search.png",
+        "selectedIconPath": "static/search-active.png",
         "text": "翻译"
       },
       {
         "pagePath": "pages/list/list",
-        "iconPath": "static/home.png",
-        "selectedIconPath": "static/home-active.png",
+        "iconPath": "static/paper.png",
+        "selectedIconPath": "static/paper-active.png",
         "text": "资讯"
       },
       {
         "pagePath": "pages/ucenter/ucenter",
-        "iconPath": "static/center.png",
-        "selectedIconPath": "static/center-active.png",
+        "iconPath": "static/bookmark1.png",
+        "selectedIconPath": "static/bookmark-active.png",
         "text": "我的"
       }
     ]

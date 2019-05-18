@@ -1,0 +1,68 @@
+
+page {
+	background: #FFF;
+}
+.ov {
+	overflow: hidden;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.searchTopBox {
+	width: 100%;
+	background-color: #0b877f;
+	height: 100rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	padding-top: 15rpx;
+}
+.searchBoxRadius {
+	width: 90%;
+	height: 70rpx;
+	background-color: #fff;
+	margin-left: 5%;
+	overflow: hidden;
+	border-radius: 35rpx;
+}
+.searchBoxIcon {
+	font-size: 40rpx;
+	margin-top: 20rpx;
+	margin-left: 20rpx;
+	float: left;
+}
+.searchBoxIpt {
+	height: 70rpx;
+	line-height: 70rpx;
+	margin-left: 20rpx;
+	float: left;
+}
+.searchBotBox {
+	width: 100%;
+	margin-top: 30rpx;
+	padding: 15rpx 3%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.searchHistoryBox {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	overflow: hidden;
+	margin-top: 40rpx;
+}
+.searchHistoryBoxItem {
+	float: left;
+	font-size: 26rpx;
+	color: #666;
+	line-height: 46rpx;
+	height: 46rpx;
+	padding: 0 20rpx;
+	border-radius: 23rpx;
+	margin-left: 15rpx;
+	margin-bottom: 20rpx;
+	border: 1px solid #ccc;
+}
+

@@ -1,1 +1,1 @@
-<view bind:__l="__l"></view>
+<view bind:__l="__l"><search></search></view>

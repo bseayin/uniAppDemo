@@ -80,14 +80,22 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var search = function search() {return __webpack_require__.e(/*! import() | components/jm-search/jm-search */ "components/jm-search/jm-search").then(__webpack_require__.bind(null, /*! @/components/jm-search/jm-search.vue */ "../../../../../../Users/jiyu/Documents/HBuilderProjects/search/components/jm-search/jm-search.vue"));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: { search: search },
   data: function data() {
     return {};
 
