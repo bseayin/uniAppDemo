@@ -139,6 +139,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -188,6 +192,7 @@ var _default =
         return false;
       }
       var that = this;
+      that.searchrs = {};
       var newArr = that.searchKey;
       newArr.push(this.ipt);
       this.searchKey = newArr;
@@ -210,11 +215,14 @@ var _default =
           noncestr: Date.now() },
 
         success: function success(res) {
-
-          // string 转 json
+          console.log(res);
           var datajson = JSON.parse(res.data);
+          if ("SUCCESS" == datajson.msg) {
+            // string 转 json
+            that.searchrs = datajson.data;
+            console.log(that.searchrs);
+          }
 
-          that.searchrs = datajson.data;
 
         },
         fail: function fail(err) {

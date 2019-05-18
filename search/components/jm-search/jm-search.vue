@@ -30,9 +30,13 @@
 							  <text class="uni-title uni-ellipsis" v-if="searchrs.pron">音标:{{searchrs.pron}}</text>
 		                    <text class="uni-title uni-ellipsis">{{searchrs.definition}}</text>
 		                    
+							<audio v-if="searchrs.pron"  style="text-align: left" :src="searchrs.audio_addresses.us[0]"  author="美式发音"   :name="searchrs.content"
+							    controls></audio>
 		                   
 		                </view>
-		               
+		               <view height='20upx'>
+						    <!-- <video  v-bind:src="searchrs.audio_addresses.us[0]"></video> -->
+					   </view>
 		            </view>
 		        </view>
 		    </block>
@@ -88,6 +92,7 @@
 					return false;
 				}
 				var that = this;
+				that.searchrs={};
 				var newArr = that.searchKey;
 				newArr.push(this.ipt);
 				this.searchKey = newArr;
@@ -110,11 +115,14 @@
 						noncestr: Date.now()
 					},
 					success: (res) => {
-					
+					console.log(res);
+					let datajson=JSON.parse(res.data);
+					if("SUCCESS"==datajson.msg){
 						// string 转 json
-						let datajson=JSON.parse(res.data);
-					
 						that.searchrs=datajson.data;
+						console.log(that.searchrs);
+					}
+						
 						
 					},
 					fail: (err) => {
