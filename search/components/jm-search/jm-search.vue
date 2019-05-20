@@ -4,13 +4,13 @@
 		<view class="searchTopBox">
 			<view class="searchBoxRadius">
 				<view class="grace-search-icon searchBoxIcon"></view>
-				<input class="searchBoxIpt" type="search" v-model="ipt" @confirm="searchNow($event)" placeholder="关键字"></input>
+				<input class="searchBoxIpt" type="search" v-model="ipt" @confirm="searchNow($event)" placeholder="输入单词"></input>
 			</view>
 		</view>
 		<!-- 搜索历史 -->
 		<view class="searchBotBox">
 			<view class="ov">
-				<view class="fl">搜索历史</view>
+				<view class="fl">查询历史</view>
 				<view @tap="clearKey" class="fr grace-more-r grace-search-remove"></view>
 			</view>
 			<view class="searchHistoryBox">
@@ -34,6 +34,11 @@
 							    controls></audio>
 		                   
 		                </view>
+						 <view class="uni-triplex-right">
+						    <view class="uni-common-mt" style="text-align: center;">
+						    		<button v-if="searchrs.pron" @click="addtobook()" class="mini-btn" type="primary" size="mini"><uni-icon type="plus" size="20"></uni-icon></button>
+						    </view>
+						</view>
 		               <view height='20upx'>
 						    <!-- <video  v-bind:src="searchrs.audio_addresses.us[0]"></video> -->
 					   </view>
@@ -44,7 +49,10 @@
 	</view>
 </template>
 <script>
+	import uniIcon from "@/components/uni-icon/uni-icon.vue"
+
 	export default {
+		 components: {uniIcon},
 		data() {
 			return {
 				searchKey: [],
@@ -121,6 +129,10 @@
 						// string 转 json
 						that.searchrs=datajson.data;
 						console.log(that.searchrs);
+						uni.setStorage({
+							key: 'searchrsLocal',
+							data: that.searchrs
+						});
 					}
 						
 						
@@ -177,6 +189,50 @@
 						this.loading = false;
 					}
 				});
+			},
+			addtobook:function(){
+				console.log("***********addtobook *******");
+				var userinfo = uni.getStorageSync('user');
+				let rsdata= uni.getStorageSync('searchrsLocal');
+				 // let username=userinfo.nickName;
+				 
+				 console.log("***********addtobook ***userinfo****",userinfo);
+				 console.log("***********addtobook ***rsdata****",rsdata);
+				 
+				 const requestUrl = 'http://localhost:9001/core/book/add'
+				 var that = this;
+				 let requestdata={};
+				 requestdata.openid=userinfo.openid;
+				 requestdata.content=rsdata.content;
+				 requestdata.pron=rsdata.pron;
+				 requestdata.definition=rsdata.definition;
+				 requestdata.audio_addresses=rsdata.audio_addresses.us[0];
+				
+				 var datarequest = JSON.stringify(requestdata);
+				  console.log("**datarequest****",datarequest);
+				 uni.request({
+				 	url: requestUrl,
+				 	dataType:'json',
+				 	data: datarequest,
+					method:'POST',
+				 	success: (res) => {
+				 	console.log(res);
+				 
+				 		
+				 		
+				 	},
+				 	fail: (err) => {
+				 		console.log('request fail', err);
+				 		uni.showModal({
+				 			content: err.errMsg,
+				 			showCancel: false
+				 		});
+				 	},
+				 	complete: () => {
+				 		this.loading = false;
+				 	}
+				 });
+				 
 			}
 		}
 	}
@@ -281,5 +337,8 @@
 	.uni-triplex-right {
 		width: 16%;
 		text-align: right;
+	}
+	.mini-btn {
+		margin-right: 10upx;
 	}
 </style>

@@ -116,11 +116,44 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 {
   components: { search: search },
   data: function data() {
-    return {};
+    return {
+      globalData: {
+        userInfo: null,
+        version: "1.7",
+        appid: 'wx2c559ff4654897fb',
+        secret: '1589cb81e8fc44ee0c7cc97c519aa8db' } };
 
 
   },
-  methods: {} };exports.default = _default;
+  methods: {},
+
+
+  onLoad: function onLoad() {
+    var that = this;
+    // 登录
+    wx.login({
+      success: function success(res) {
+        if (res.code) {
+          // 发送 res.code 到后台换取 openId, sessionKey
+          var d = that.globalData;
+          var urlVal = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + d.appid + '&secret=' + d.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
+          wx.request({
+            url: urlVal,
+            data: {},
+            method: 'GET',
+            success: function success(res) {
+              var obj = {};
+              obj.openid = res.data.openid; //获取到的openid
+              console.log("*****", obj.openid);
+              wx.setStorageSync('user', obj); //存储openid 
+            } });
+
+        } else {
+          console.log('登录失败！' + res.errMsg);
+        }
+      } });
+
+  } };exports.default = _default;
 
 /***/ }),
 

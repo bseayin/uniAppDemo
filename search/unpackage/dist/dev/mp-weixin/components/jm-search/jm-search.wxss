@@ -109,4 +109,7 @@ page {
 	width: 16%;
 	text-align: right;
 }
+.mini-btn {
+	margin-right: 10rpx;
+}
 

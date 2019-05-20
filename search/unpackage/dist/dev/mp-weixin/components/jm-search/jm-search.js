@@ -98,53 +98,61 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniIcon = function uniIcon() {return __webpack_require__.e(/*! import() | components/uni-icon/uni-icon */ "components/uni-icon/uni-icon").then(__webpack_require__.bind(null, /*! @/components/uni-icon/uni-icon.vue */ "../../../../../../Users/jiyu/Documents/HBuilderProjects/search/components/uni-icon/uni-icon.vue"));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: { uniIcon: uniIcon },
   data: function data() {
     return {
       searchKey: [],
@@ -221,6 +229,10 @@ var _default =
             // string 转 json
             that.searchrs = datajson.data;
             console.log(that.searchrs);
+            uni.setStorage({
+              key: 'searchrsLocal',
+              data: that.searchrs });
+
           }
 
 
@@ -276,6 +288,50 @@ var _default =
         complete: function complete() {
           _this2.loading = false;
         } });
+
+    },
+    addtobook: function addtobook() {var _this3 = this;
+      console.log("***********addtobook *******");
+      var userinfo = uni.getStorageSync('user');
+      var rsdata = uni.getStorageSync('searchrsLocal');
+      // let username=userinfo.nickName;
+
+      console.log("***********addtobook ***userinfo****", userinfo);
+      console.log("***********addtobook ***rsdata****", rsdata);
+
+      var requestUrl = 'http://localhost:9001/core/book/add';
+      var that = this;
+      var requestdata = {};
+      requestdata.openid = userinfo.openid;
+      requestdata.content = rsdata.content;
+      requestdata.pron = rsdata.pron;
+      requestdata.definition = rsdata.definition;
+      requestdata.audio_addresses = rsdata.audio_addresses.us[0];
+
+      var datarequest = JSON.stringify(requestdata);
+      console.log("**datarequest****", datarequest);
+      uni.request({
+        url: requestUrl,
+        dataType: 'json',
+        data: datarequest,
+        method: 'POST',
+        success: function success(res) {
+          console.log(res);
+
+
+
+        },
+        fail: function fail(err) {
+          console.log('request fail', err);
+          uni.showModal({
+            content: err.errMsg,
+            showCancel: false });
+
+        },
+        complete: function complete() {
+          _this3.loading = false;
+        } });
+
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["default"]))
